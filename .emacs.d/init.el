@@ -103,10 +103,14 @@
   (add-to-list 'company-backends 'company-math-symbols-commands)
   (add-hook 'after-init-hook 'global-company-mode))
 
-;; etc
+;; rainbow delimiters
 (when (require 'rainbow-delimiters nil t)
   (add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
   (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode))
+
+;; hs-minor-mode
+(add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
+(global-set-key (kbd "C-#") 'hs-toggle-hiding)
 
 ;; move to the above window by S-<up> and so on
 (global-set-key (kbd "S-<up>") 'windmove-up)
