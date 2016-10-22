@@ -1,0 +1,30 @@
+(source gnu)
+(source melpa)
+
+;; cask
+(depends-on "cask")
+
+;; git
+(depends-on "magit")
+(depends-on "git-gutter")
+
+;; input method
+(depends-on "ddskk")
+
+;; theme
+(depends-on "moe-theme")
+
+;; Tools
+(depends-on "yasnippet")
+(depends-on "undo-tree")
+(depends-on "rainbow-delimiters")
+(depends-on "company")
+(depends-on "company-math")
+(depends-on "company-auctex")
+(depends-on "anzu")
+
+;; TeX
+(depends-on "auctex")
+
+;; Markdown
+(depends-on "markdown-mode")
