@@ -135,9 +135,9 @@ hash -d dl=$HOME/Downloads
 
 # alias
 alias be="bundle exec"
-alias ls="ls -G"
+alias ls="ls -G --color"
 
 # env
-#if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
