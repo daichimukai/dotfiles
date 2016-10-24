@@ -14,14 +14,17 @@
 ;; theme
 (depends-on "moe-theme")
 
+;; completion
+(depends-on "company")
+(depends-on "company-math")
+(depends-on "company-auctex")
+
 ;; Tools
 (depends-on "yasnippet")
 (depends-on "undo-tree")
 (depends-on "rainbow-delimiters")
-(depends-on "company")
-(depends-on "company-math")
-(depends-on "company-auctex")
 (depends-on "anzu")
+(depends-on "popwin")
 
 ;; TeX
 (depends-on "auctex")
