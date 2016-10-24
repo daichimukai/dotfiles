@@ -63,10 +63,10 @@
 (define-key cua-global-keymap [C-return] nil)
 
 ;; popwin
-(require 'popwin)
-(setq display-buffer-function 'popwin:display-buffer)
-(setq popwin:popup-window-position 'botttom)
-(push '("*Buffer List*") popwin:special-display-config)
+(when (require 'popwin nil t)
+  (setq display-buffer-function 'popwin:display-buffer)
+  (setq popwin:popup-window-position 'bottom)
+  (push '("*Buffer List*") popwin:special-display-config))
 
 ;; ido mode
 (when (require 'ido nil t)
