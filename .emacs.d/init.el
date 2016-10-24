@@ -37,7 +37,13 @@
   (moe-dark)
   (moe-theme-set-color 'orange))
 
-;; font
+;; font settings
+;;
+;; On the OS X, `size' parameter of the next `let' variable should be an even integer
+;; so that the ratio of widths of zenkaku and hankaku characters become 1:2
+;;
+;; はんかくもじ と ぜんかくもじ の はば の ひ を 1:2 に したい
+;; hannkakumoji to zennkakumoji no haba no hi wo 1:2 ni shitai
 (let* ((size 12)
        (asciifont "Ricty")
        (jpfont "Ricty")
