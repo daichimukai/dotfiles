@@ -6,9 +6,7 @@
 ;; package settings
 ;; using cask
 (package-initialize)
-(when (if (eq system-type 'gnu/linux)
-    (require 'cask "~/.cask/cask.el" t)
-    (require 'cask nil t))
+(when (require 'cask "~/.cask/cask.el" t)
   (cask-initialize))
 
 ;; general settings
@@ -16,6 +14,7 @@
 (setq ring-bell-function 'ignore)
 (setq confirm-kill-emacs 'y-or-n-p)
 (setq inhibit-startup-screen t)
+(setq initial-scratch-message "")
 (setq scroll-step 1)
 (setq show-trailing-whitespace t)
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -28,6 +27,10 @@
 (show-paren-mode)
 (setq show-paren-delay 0)
 (setq show-paren-style 'expression)
+
+(if (eq system-type 'darwin)
+    (add-hook 'after-init-hook (function (lambda ()
+					   (set-frame-parameter nil 'fullscreen 'maximized)))))
 
 ;; theme
 (when (require 'moe-theme nil t)
