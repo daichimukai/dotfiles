@@ -143,8 +143,3 @@ case ${OSTYPE} in
         alias ls="ls --color"
         ;;
 esac
-
-# env
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
