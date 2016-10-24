@@ -135,7 +135,14 @@ hash -d dl=$HOME/Downloads
 
 # alias
 alias be="bundle exec"
-alias ls="ls -G --color"
+case ${OSTYPE} in
+    darwin*)
+        alias ls="ls -G"
+        ;;
+    linux*)
+        alias ls="ls --color"
+        ;;
+esac
 
 # env
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
