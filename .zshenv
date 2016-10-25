@@ -13,6 +13,8 @@ if [ -z $TMUX ]; then
 	/usr/local/bin(N-/)
 	$path
     )
+    if [[ "${OSTYPE}" =~ darwin* ]]; then path=( /Library/TeX/texbin(N-/) $path ) fi
+
     # env
     if has pyenv; then eval "$(pyenv init -)"; fi
     if has pyenv-virtualenv-init; then eval "$(pyenv virtualenv-init -)"; fi
