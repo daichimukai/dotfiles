@@ -17,9 +17,10 @@
 ;; `~/.emacs.d/init.el' when the completion is working
 ;; no settings will be loaded if
 (when (require 'init-loader nil t)
-  (setq init-loader-directory "~/.emacs.d/config/")
-  (setq init-loader-show-log-after-init "error-only")
-  (setq init-loader-byte-compile t)
+  (custom-set-variables
+   '(init-loader-directory "~/.emacs.d/config/")
+   '(init-loader-show-log-after-init "error-only")
+   '(init-loader-byte-compile t))
   (init-loader-load "~/.emacs.d/config/"))
 
 ;; general settings
@@ -81,7 +82,8 @@
 (when (require 'popwin nil t)
   (setq display-buffer-function 'popwin:display-buffer)
   (setq popwin:popup-window-position 'bottom)
-  (push '("*Buffer List*") popwin:special-display-config))
+  (push '("*Buffer List*" :noselect t) popwin:special-display-config)
+  (push '("*TeX Help*" :noselect t) popwin:special-display-config))
 
 ;; ido mode
 (when (require 'ido nil t)
