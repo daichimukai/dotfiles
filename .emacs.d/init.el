@@ -1,13 +1,26 @@
+;; always require cl
+;; why don't?
 (require 'cl)
 
-(setq-default user-full-name "Daichi Mukai")
-(setq-default user-mail-address "mukai.daichi.37e@kyoto-u.jp")
-
 ;; package settings
-;; using cask
-(package-initialize)
+;;
+;; package.el wants to add next S-exp, but I don't know whether
+;; it is really needed or not
+;; (package-initialize)
+
+;; use cask
 (when (require 'cask "~/.cask/cask.el" t)
   (cask-initialize))
+
+;; init-loader
+;; directory name `~/.emacs.d/inits' for init-loaders directory conflicts with
+;; `~/.emacs.d/init.el' when the completion is working
+;; no settings will be loaded if
+(when (require 'init-loader nil t)
+  (setq init-loader-directory "~/.emacs.d/config/")
+  (setq init-loader-show-log-after-init "error-only")
+  (setq init-loader-byte-compile t)
+  (init-loader-load "~/.emacs.d/config/"))
 
 ;; general settings
 (setq make-backup-files nil)
@@ -27,10 +40,6 @@
 (show-paren-mode)
 (setq show-paren-delay 0)
 (setq show-paren-style 'expression)
-
-(if (eq system-type 'darwin)
-    (add-hook 'after-init-hook (function (lambda ()
-					   (set-frame-parameter nil 'fullscreen 'maximized)))))
 
 ;; theme
 (when (require 'moe-theme nil t)

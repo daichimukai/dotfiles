@@ -1,8 +1,11 @@
 (source gnu)
 (source melpa)
 
-;; cask
+;; emacs settings and package management
+;; mainly used in setting files
 (depends-on "cask")
+(depends-on "use-package")
+(depends-on "init-loader")
 
 ;; git
 (depends-on "magit")

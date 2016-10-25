@@ -1,3 +1,4 @@
 .cask
 ido.last
 auto-save-list
+*.elc
