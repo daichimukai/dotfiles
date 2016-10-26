@@ -42,6 +42,8 @@
 (setq show-paren-delay 0)
 (setq show-paren-style 'expression)
 
+(set-frame-parameter nil 'alpha 90)
+
 ;; theme
 (when (require 'moe-theme nil t)
   (moe-dark)
@@ -137,6 +139,14 @@
 ;; hs-minor-mode
 (add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
 (global-set-key (kbd "C-#") 'hs-toggle-hiding)
+
+(defun my/other-window-or-split ()
+  "[my] split window vertically or move to the other"
+  (interactive)
+  (when (one-window-p)
+    (split-window-horizontally))
+  (other-window 1))
+(global-set-key (kbd "C-t") 'my/other-window-or-split)
 
 ;; move to the above window by S-<up> and so on
 (global-set-key (kbd "S-<up>") 'windmove-up)
