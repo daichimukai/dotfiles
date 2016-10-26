@@ -33,6 +33,7 @@
 (setq show-trailing-whitespace t)
 (fset 'yes-or-no-p 'y-or-n-p)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+(custom-set-variables '(require-final-newline 'visit-save))
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)
