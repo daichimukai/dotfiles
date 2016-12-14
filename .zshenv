@@ -14,6 +14,12 @@ if [ -z $TMUX ]; then
         $path
     )
     if [[ "${OSTYPE}" =~ darwin* ]]; then path=( /Library/TeX/texbin(N-/) $path ) fi
+    export EDITOR=vim
+
+    if [[ "${OSTYPE}" =~ darwin* ]]; then
+        export LANG=en_US.UTF-8
+        export LC_ALL=$LANG
+    fi
 
     # env
     if has pyenv; then eval "$(pyenv init -)"; fi
