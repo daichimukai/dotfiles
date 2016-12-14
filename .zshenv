@@ -8,10 +8,10 @@ has() {
 
 if [ -z $TMUX ]; then
     path=(
-	$HOME/bin(N-/)
-	$HOME/.cask/bin(N-/)
-	/usr/local/bin(N-/)
-	$path
+        $HOME/bin(N-/)
+        $HOME/.cask/bin(N-/)
+        /usr/local/bin(N-/)
+        $path
     )
     if [[ "${OSTYPE}" =~ darwin* ]]; then path=( /Library/TeX/texbin(N-/) $path ) fi
 
@@ -20,10 +20,10 @@ if [ -z $TMUX ]; then
     if has pyenv-virtualenv-init; then eval "$(pyenv virtualenv-init -)"; fi
     if has rbenv; then eval "$(rbenv init -)"; fi
     if has ruby && [ ! $(has rbenv) ] ; then
-	local gembin="$(ruby -e 'print Gem.user_dir')"
-	path=(
-	    $gembin/bin(N-/)
-	    $path
-	)
+        local gembin="$(ruby -e 'print Gem.user_dir')"
+        path=(
+            $gembin/bin(N-/)
+            $path
+    )
     fi
 fi
