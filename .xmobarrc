@@ -1,26 +1,32 @@
-Config { font    = "xft:Ricty-Regular:size=10:antialias=true"
+Config { font    = "xft:Noto Sans CJK JP Bold:size=9:antialias=true"
        , bgColor = "#1a1e1b"
        , fgColor = "#d3d7cf"
        , position = Top
        , lowerOnStart = False
-       , commands = [ Run DynNetwork [ "-t" , "<icon=/home/daichi/.icons/sm4tik-icon-pack/xbm/wifi_02.xbm/> <icon=/home/daichi/.icons/sm4tik-icon-pack/xbm/net_down_03.xbm/> <rx>Kb/s <icon=/home/daichi/.icons/sm4tik-icon-pack/xbm/net_up_03.xbm/> <tx>Kb/s"
-       	                             , "-L", "40"
-				     , "-H", "200"
-				     , "--normal", "green"
+       , commands = [ Run DynNetwork [ "-t" , "RX <rx>kB/s TX <tx>kB/s"
+       	                             , "-L", "40000"
+				     , "-H", "200000"
+                                     , "--low", "cyan"
+				     , "--normal", "orange"
 				     , "--high", "red"] 10
                     , Run MultiCpu ["-t", "<total0>.<total1>.<total2>.<total3>.<total4>.<total5>.<total6>.<total7>"
-		                   , "-L", "0"
+		                   , "-L", "30"
 				   , "-H","80"
-				   , "--normal", "green"
+                                   , "--low", "cyan"
+				   , "--normal", "orange"
 				   , "--high","red"] 10
-                    , Run Memory ["-t","<usedratio>%"] 10
-                    , Run Swap ["-t", "<usedratio>%"] 10
+                    , Run Memory ["-t","<usedratio>%"
+                                 , "--low", "cyan"
+				 , "--normal", "orange"
+				 , "--high","red"] 10
+                    , Run Swap ["-t", "<usedratio>%"
+                               , "--low", "cyan"
+			       , "--normal", "orange"
+			       , "--high","red"] 10
                     , Run Date "%Y-%m-%d %A %T" "date" 10
-                    , Run Com "ibus" [ "engine" ] "" 600
-                    , Run Com "sh" ["/home/daichi/bin/get_volume.sh"] "volume" 10
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ <icon=/home/daichi/.icons/sm4tik-icon-pack/xbm/cpu.xbm/> %multicpu% <icon=/home/daichi/.icons/sm4tik-icon-pack/xbm/mem.xbm/> %memory% <icon=/home/daichi/.icons/swap.xbm/> %swap% %dynnetwork% <icon=/home/daichi/.icons/sm4tik-icon-pack/xbm/spkr_01.xbm/> %volume% <icon=/home/daichi/.icons/sm4tik-icon-pack/xbm/clock.xbm/> %date%"
+       , template = "%StdinReader% }{ CPU %multicpu% Memory %memory% Swap %swap% %dynnetwork% <icon=/home/daichi/.icons/sm4tik-icon-pack/xbm/clock.xbm/> %date%"
        }
