@@ -1,14 +1,16 @@
 !!! urxvt
 
 ! font settting
-URxvt*font: xft:Ricty:size=12:antialias=true
+URxvt*font: xft:Sauce Code Powerline:pixelsize=11, xft:Ricty:style=Regular:pixelsize=11, xft:Dejavu Sans Mono:pixelsize=11, xft:xos4 Terminus:pixelsize=11
 URxvt*allow_bold: true
+URxvt*boldFont: xft:Sauce Code Powerline:style=Bold:pixelsize=11, xft:Ricty:style=Bold:pixelsize=11, xft:DejaVu Sans Mono:style=Bold:pixelsize=11, xft:xos4 Terminus:style=Bold:pixelsize=11
 
 URxvt*depth: 32
 URxvt*fading: 30
 URxvt*scrollBar: false
 URxvt*shading: 10
-URxvt*transparent: True
+
+#include ".dotfiles/Xresources.d/urxvt"
 
 ! color settings and appearances
 URxvt*background: #1D1F21
@@ -31,14 +33,30 @@ URxvt*color14: #8ABEB7
 URxvt*color15: #C5C8C6
 
 ! perl extentions
-URxvt*perl-ext-common: xim-onthespot
+URxvt*perl-ext-common: default,selection-to-clipboard,pasta,matcher,keyboard-select,xim-onthespot
+URxvt*url-launcher: /usr/bin/google-chrome-stable
+URxvt*underlineURLs: True
+URxvt*matcher.button: 1
+URxvt*keysym.Control-Shift-V: perl:pasta:paste
 
 ! input method
 URxvt*inputMethod: ibus
 URxvt*preeditType: OnTheSpot
+
+Xft.dpi: 96
+Xft.antialias: true
+Xft.rgba: rgb
+Xft.hinting: true
+Xft.hintstyle: hintslight
+Xft.autohint: false
+Xft.lcdfilter: lcddefault
 
 !!! Emacs
 
 ! do not use ibus in Emacs
 ! ibus-daemon should be started with --xim (or -x) option
 Emacs*useXIM: false
+
+
+!!! Rofi
+#include ".dotfiles/Xresources.d/rofi"
