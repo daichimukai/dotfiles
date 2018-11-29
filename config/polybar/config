@@ -49,10 +49,11 @@ font-1 = "Sauce Code Powerline:pixelsize=10;1"
 font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=10;1"
 font-3 = "Font Awesome 5 Free:style=Solid:pixelsize=10;1"
 font-4 = "Font Awesome 5 Brands-Regular-400:pixelsize=10;1"
+font-5 = "icomoon:pixelsize=11;1"
 
 modules-left = 
 modules-center = i3 
-modules-right = mail filesystem volume xkeyboard memory cpu temperature date 
+modules-right = mail filesystem volume cpu memory temperature date
 ; modules-right = filesystem volume xkeyboard memory cpu mail temperature date powermenu
 
 tray-position = left
@@ -101,7 +102,8 @@ interval = 25
 
 mount-0 = /
 
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-mounted = %{F-} %percentage_used%%
+label-mounted-foreground = ${colors.foreground-alt}
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 
@@ -160,13 +162,14 @@ label-urgent-background = ${module/bspwm.label-urgent-background}
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
 ; icon
-ws-icon-0 = 1:terminal;
-ws-icon-1 = 2:chrome;
-ws-icon-2 = 3:discord;
-ws-icon-3 = 4:obs;
-ws-icon-4 = 5:mail;
-ws-icon-5 = 6:key;
-ws-icon-default =  
+ws-icon-0 = 1:terminal;
+ws-icon-1 = 2:chrome;
+ws-icon-2 = 3:discord;
+ws-icon-3 = 4:obs;
+ws-icon-4 = 5:mail;
+ws-icon-5 = 6:key;
+ws-icon-6 = 7;
+ws-icon-default = 
 
 [module/mpd]
 type = internal/mpd
@@ -206,7 +209,7 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
+format-prefix = " "
 ; format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #f90000
@@ -215,7 +218,7 @@ label = %percentage:2%%
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #4bffdc
 label = %percentage_used%%
@@ -270,7 +273,7 @@ date-alt = " %Y-%m-%d"
 time = %H:%M:%S
 time-alt = %H:%M:%S
 
-format-prefix = 
+format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #0a6cf5
 
@@ -280,11 +283,11 @@ label = %date% %time%
 type = internal/volume
 
 format-volume = <label-volume> <bar-volume>
-label-volume = 
+label-volume = 
 label-volume-foreground = ${colors.foreground-alt}
 ; label-volume-foreground = ${root.foreground}
 
-format-muted-prefix = " "
+format-muted-prefix = " "
 format-muted-foreground = ${colors.foreground-alt}
 label-muted = sound muted
 
@@ -385,7 +388,7 @@ type = custom/script
 
 exec = ~/bin/checkmail
 
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 interval = 60
 
@@ -398,6 +401,6 @@ screenchange-reload = true
 
 [global/wm]
 margin-top = 5
-margin-bottom = 5
+margin-bottom = 0
 
 ; vim:ft=dosini
