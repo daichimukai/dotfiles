@@ -180,4 +180,5 @@ assign [class="^Enpass-Desktop$"] → 6:key
 
 # startup scripts
 exec --no-startup-id "ibus-daemon -drx"
+exec --no-startup-id "compton"
 exec --no-startup-id "urxvt"
