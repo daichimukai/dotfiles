@@ -21,6 +21,9 @@ if [ -d $HOME/.go ]; then
     export PATH=$PATH:$GOPATH/bin
 fi
 
+# node.js
+export PATH=~/.npm-global/bin:$PATH
+
 # The following line runs your .bashrc and is recommended by the bash
 # info pages.
 # If this shell is interactive mode, the following lines never return!
