@@ -21,6 +21,10 @@
 
 (straight-use-package 'use-package)
 
+(use-package which-key
+  :config (which-key-mode)
+  :straight t)
+
 (use-package magit
   :defer t
   :straight t)
@@ -38,6 +42,7 @@
 
 ;; escape all by "fd"
 (use-package evil-escape
+  :after evil
   :config (evil-escape-mode)
   :straight t)
 
