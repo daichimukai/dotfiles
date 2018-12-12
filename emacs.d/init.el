@@ -21,6 +21,9 @@
 (scroll-bar-mode -1) ; disable scroll bar
 (tool-bar-mode -1)
 
+;;; Font
+(set-face-attribute 'default 'nil :family "Hack" :height 105)
+
 ;;; use-package
 ;;; https://github.com/jwiegley/use-package
 (straight-use-package 'use-package)
@@ -28,7 +31,10 @@
 (defun my/open-init-el ()
   "Open init.el."
   (interactive)
-  (find-file (expand-file-name "~/.emacs.d/init.el")))
+  (if (get-buffer "init.el")
+      (let ((buffer (get-buffer "init.el")))
+	(switch-to-buffer buffer))
+    (find-file (expand-file-name "~/.emacs.d/init.el"))))
 
 (defun my/reload-init-el ()
   "Reload init.el."
@@ -106,9 +112,33 @@
   (moe-theme-set-color 'orange)
   :straight t)
 
+;;; golden-ratio.el
+;;; https://github.com/roman/golden-ratio.el
+(use-package golden-ratio
+  :straight t
+  :config
+  (golden-ratio-mode 1))
+
+;;; rainbow-delimiters
+;;; https://github.com/Fanael/rainbow-delimiters
+(use-package rainbow-delimiters
+  :straight t
+  :hook (prog-mode . rainbow-delimiters-mode))
+
 ;;; Completion
-(use-package ivy :straight t
-  :config (ivy-mode 1))
+;;; https://github.com/abo-abo/swiper
+(use-package ivy
+  :straight t
+  :config
+  (setq ivy-count-format "(%d/%d) ")
+  (setq ivy-re-builders-alist
+	'((t . ivy--regex-plus)))
+  (ivy-mode 1))
+
+(use-package counsel
+  :straight t
+  :config
+  (counsel-mode))
 
 (use-package swiper :straight t
   :bind (("C-s" . swiper)))
