@@ -80,6 +80,8 @@
 
 (use-package magit
   :defer t
+  :init
+  (setq vc-follow-symlinks t)
   :straight t)
 
 (use-package evil
