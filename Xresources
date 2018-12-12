@@ -4,9 +4,9 @@
 !!! urxvt
 
 ! font settting
-URxvt*font: xft:Fira Code:pixelsize=12, xft:Sauce Code Powerline:pixelsize=12, xft:Ricty:style=Regular:pixelsize=12, xft:Dejavu Sans Mono:pixelsize=12, xft:xos4 Terminus:pixelsize=12
+URxvt*font: xft:Hack:pixelsize=14, xft:Fira Code:pixelsize=12, xft:Sauce Code Powerline:pixelsize=12, xft:Ricty:style=Regular:pixelsize=12, xft:Dejavu Sans Mono:pixelsize=12, xft:xos4 Terminus:pixelsize=12
 URxvt*allow_bold: true
-URxvt*boldFont: xft:Fira Code:style=Bold:pixelsize=12, xft:Sauce Code Powerline:style=Bold:pixelsize=12, xft:Ricty:style=Bold:pixelsize=12, xft:DejaVu Sans Mono:style=Bold:pixelsize=12, xft:xos4 Terminus:style=Bold:pixelsize=12
+URxvt*boldFont: xft:Hack:style=Bold:pixelsize=14, xft:Fira Code:style=Bold:pixelsize=12, xft:Sauce Code Powerline:style=Bold:pixelsize=12, xft:Ricty:style=Bold:pixelsize=12, xft:DejaVu Sans Mono:style=Bold:pixelsize=12, xft:xos4 Terminus:style=Bold:pixelsize=12
 URxvt*letterSpace: -1
 
 URxvt*depth: 32
