@@ -5,14 +5,14 @@
 
 #define DEFAULT_PIXEL_SIZE 14
 #define DEFAULT_FONT_FAMILY Hack
+#define JP_PIXEL_SIZE 16
 #define JP_FONT_FAMILY Ricty
 #define FALLBACK_FONT_FAMILY Dejavu Sans Mono
 
 ! font settting
-URxvt*font: xft:DEFAULT_FONT_FAMILY:pixelsize=DEFAULT_PIXEL_SIZE, xft:Ricty:style=Regular:pixelsize=DEFAULT_PIXEL_SIZE, xft:FALLBACK_FONT_FAMILY:pixelsize=DEFAULT_PIXEL_SIZE
+URxvt*font: xft:DEFAULT_FONT_FAMILY:pixelsize=DEFAULT_PIXEL_SIZE, xft:JP_FONT_FAMILY:style=Regular:pixelsize=JP_PIXEL_SIZE, xft:FALLBACK_FONT_FAMILY:pixelsize=DEFAULT_PIXEL_SIZE
 URxvt*allow_bold: true
-URxvt*boldFont: xft:DEFAULT_FONT_FAMILY:style=Bold:pixelsize=DEFAULT_PIXEL_SIZE, xft:Ricty:style=Bold:pixelsize=DEFAULT_PIXEL_SIZE, xft:FALLBACK_FONT_FAMILY:style=Bold:pixelsize=DEFAULT_PIXEL_SIZE
-!URxvt*boldFont: xft:DEFAULT_FONT_FAMILY:style=Bold:pixelsize=DEFAULT_FONT_FIZE, xft:Fira Code:style=Bold:pixelsize=12, xft:Sauce Code Powerline:style=Bold:pixelsize=12, xft:Ricty:style=Bold:pixelsize=DEFAULT_PIXEL_SIZE, xft:DejaVu Sans Mono:style=Bold:pixelsize=12, xft:xos4 Terminus:style=Bold:pixelsize=12
+URxvt*boldFont: xft:DEFAULT_FONT_FAMILY:style=Bold:pixelsize=DEFAULT_PIXEL_SIZE, xft:JP_FONT_FAMILY:style=Bold:pixelsize=JP_PIXEL_SIZE, xft:FALLBACK_FONT_FAMILY:style=Bold:pixelsize=DEFAULT_PIXEL_SIZE
 URxvt*letterSpace: -1
 
 URxvt*depth: 32
