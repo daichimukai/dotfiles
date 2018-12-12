@@ -1,3 +1,13 @@
+;;; init.el
+;;; https://github.com/daichimukai/dotfiles
+;;;
+;;; How did that?
+;;;
+;;; Q. How do I open this url in a browser?
+;;; A. Push "gx" on the url (`browse-url-at-point`)
+;;;
+
+
 ;;; straight.el
 ;;; https://github.com/raxod502/straight.el
 (defvar bootstrap-version)
@@ -20,6 +30,7 @@
 (scroll-bar-mode -1) ; disable scroll bar
 (tool-bar-mode -1)
 
+
 ;;; Font
 ;;;
 ;;; hannkaku moji to zennkaku moji no haba no hi wo 1:2 ni shitai
@@ -34,6 +45,8 @@
 ;;; https://github.com/jwiegley/use-package
 (straight-use-package 'use-package)
 
+
+;;; my utils
 (defun my/open-init-el ()
   "Open init.el."
   (interactive)
@@ -53,6 +66,7 @@
   (interactive)
   (switch-to-buffer (get-buffer-create "*scratch*")))
 
+
 ;;; leader key
 (define-prefix-command 'my-leader-map) ;; my leader key
 (bind-key "SPC" 'execute-extended-command my-leader-map)
@@ -86,16 +100,24 @@
 	   :prefix-map my-init-el-map
 	   ("d" . my/open-init-el))
 
+
+;;; which-key
 (use-package which-key
   :config (which-key-mode)
   :straight t)
 
+
+;;; vcs
+
+;;; magit
 (use-package magit
   :defer t
   :init
   (setq vc-follow-symlinks t)
   :straight t)
 
+
+;;; evil
 (use-package evil
   :config
   (define-key evil-normal-state-map (kbd "SPC") 'my-leader-map) ;; change the leader key to space
@@ -112,6 +134,10 @@
   :after (evil magit)
   :init (setq evil-magit-state 'normal))
 
+
+;;; UI
+
+;;; moe-theme
 (use-package moe-theme
   :config
   (moe-dark)
@@ -132,7 +158,10 @@
   :straight t
   :hook (prog-mode . rainbow-delimiters-mode))
 
+
 ;;; Completion
+
+;;; ivy
 ;;; https://github.com/abo-abo/swiper
 (use-package ivy
   :straight t
@@ -156,6 +185,9 @@
   :init (setq company-tooltip-align-annotations t)
   :hook (prog-mode . company-mode))
 
+
+;;; syntax check
+
 ;;; flycheck
 ;;; https://github.com/flycheck/flycheck
 (use-package flycheck
@@ -163,14 +195,14 @@
   :config
   (global-flycheck-mode))
 
-
+
 ;;; input method
 
 ;;; ddskk
 ;;; https://github.com/skk-dev/ddskk
 (use-package ddskk :straight t :defer t)
 
-
+
 ;;; Language specific configurations
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
