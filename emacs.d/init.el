@@ -26,18 +26,18 @@
 (straight-use-package 'use-package)
 
 (defun my/open-init-el ()
-  "open init.el"
+  "Open init.el."
   (interactive)
   (find-file (expand-file-name "~/.emacs.d/init.el")))
 
 (defun my/reload-init-el ()
-  "reload init.el"
+  "Reload init.el."
   (interactive)
   (eval-buffer (find-file-noselect (expand-file-name "~/.emacs.d/init.el")))
   (message "Reloaded ~/.emacs.d/init.el"))
 
 (defun my/switch-to-scratch-buffer ()
-  "switch to a scratch buffer"
+  "Switch to a scratch buffer."
   (interactive)
   (switch-to-buffer (get-buffer-create "*scratch*")))
 
@@ -101,7 +101,9 @@
   :init (setq evil-magit-state 'normal))
 
 (use-package moe-theme
-  :config (moe-dark)
+  :config
+  (moe-dark)
+  (moe-theme-set-color 'orange)
   :straight t)
 
 ;;; Completion
@@ -115,8 +117,21 @@
 ;;; http://company-mode.github.io/
 (use-package company :straight t
   :init (setq company-tooltip-align-annotations t)
-  :hook (prog-mode . company-mode)
-  :bind)
+  :hook (prog-mode . company-mode))
+
+;;; flycheck
+;;; https://github.com/flycheck/flycheck
+(use-package flycheck
+  :straight t
+  :config
+  (global-flycheck-mode))
+
+
+;;; input method
+
+;;; ddskk
+;;; https://github.com/skk-dev/ddskk
+(use-package ddskk :straight t :defer t)
 
 
 ;;; Language specific configurations
