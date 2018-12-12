@@ -17,12 +17,18 @@
 (setq inhibit-startup-message t) ; no startup screen
 (setq make-backup-files nil)
 (setq auto-save-default nil)
-(global-set-key (kbd "C-h") 'delete-backward-char)
 (scroll-bar-mode -1) ; disable scroll bar
 (tool-bar-mode -1)
 
 ;;; Font
+;;;
+;;; hannkaku moji to zennkaku moji no haba no hi wo 1:2 ni shitai
+;;; はんかく もじ と ぜんかく もじ の はば の ひ を 1:2 に したい
+;;;
+;;; (ó﹏ò。) < HELP ME! I cannot explain the accurate reason why this config works as exactly I want
+;;;
 (set-face-attribute 'default 'nil :family "Hack" :height 105)
+(set-fontset-font t 'japanese-jisx0208 (font-spec :family "MyricaM M" :size 12.0))
 
 ;;; use-package
 ;;; https://github.com/jwiegley/use-package
