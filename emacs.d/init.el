@@ -44,6 +44,13 @@
 	   :prefix-map my-buffer-map
 	   ("b" . switch-to-buffer))
 
+;;; git map
+(define-prefix-command 'my-git-map)
+(bind-keys :map my-leader-map
+	   :prefix "g" ;; bind to '<leader>g'
+	   :prefix-map my-git-map
+	   ("s" . magit-status))
+
 ;;; init.el map
 (define-prefix-command 'my-init-el-map)
 (bind-keys :map my-file-map
