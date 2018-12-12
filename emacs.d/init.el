@@ -117,7 +117,8 @@
 (use-package golden-ratio
   :straight t
   :config
-  (golden-ratio-mode 1))
+  (golden-ratio-mode 1)
+  (add-to-list 'golden-ratio-extra-commands 'magit-status))
 
 ;;; rainbow-delimiters
 ;;; https://github.com/Fanael/rainbow-delimiters
