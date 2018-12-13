@@ -30,6 +30,10 @@
 (scroll-bar-mode -1) ; disable scroll bar
 (tool-bar-mode -1)
 
+;;; use-package
+;;; https://github.com/jwiegley/use-package
+(straight-use-package 'use-package)
+
 
 ;;; Font
 ;;;
@@ -38,12 +42,20 @@
 ;;;
 ;;; (ó﹏ò。) < HELP ME! I cannot explain the accurate reason why this config works as exactly I want
 ;;;
+
+;;; Hack
+;;; https://sourcefoundry.org/hack/
 (set-face-attribute 'default 'nil :family "Hack" :height 105)
+
+;;; MyricaM
+;;; https://myrica.estable.jp/myricamhistry/
 (set-fontset-font t 'japanese-jisx0208 (font-spec :family "MyricaM M" :size 12.0))
 
-;;; use-package
-;;; https://github.com/jwiegley/use-package
-(straight-use-package 'use-package)
+;;; fira-code-mode
+(use-package fira-code-mode
+  :load-path "lisp"
+  :hook (prog-mode . fira-code-mode)
+  :config (fira-code-mode--setup))
 
 
 ;;; my utils
