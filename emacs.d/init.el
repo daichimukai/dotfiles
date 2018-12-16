@@ -284,4 +284,3 @@
   :after (company proof-general)
   :straight t
   :hook (coq-mode . company-coq-mode))
-
