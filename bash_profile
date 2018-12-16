@@ -24,6 +24,9 @@ fi
 # node.js
 export PATH=~/.npm-global/bin:$PATH
 
+# opam configuration
+source $HOME/.opam/opam-init/init.sh > /dev/null 2>&1 || true
+
 # The following line runs your .bashrc and is recommended by the bash
 # info pages.
 # If this shell is interactive mode, the following lines never return!
