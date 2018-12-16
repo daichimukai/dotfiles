@@ -131,6 +131,8 @@
 
 ;;; evil
 (use-package evil
+  :init
+  (setq evil-want-abbrev-expand-on-insert-exit nil)
   :config
   (define-key evil-normal-state-map (kbd "SPC") 'my-leader-map) ;; change the leader key to space
   (evil-mode)
@@ -162,6 +164,7 @@
   :straight t
   :config
   (golden-ratio-mode 1)
+  (setq golden-ratio-exclude-buffer-names '("*goals*" "*response*"))
   (add-to-list 'golden-ratio-extra-commands 'magit-status))
 
 ;;; rainbow-delimiters
@@ -215,6 +218,22 @@
 (use-package ddskk :straight t :defer t)
 
 
+;;; Utility
+
+;;; quickrun.el
+;;; https://github.com/syohex/emacs-quickrun
+(use-package quickrun :defer t :straight t)
+
+;;; yasnippet
+(use-package yasnippet
+  :straight t
+  :init
+  (setq yas-snippet-dirs (list (expand-file-name "snippets" user-emacs-directory)))
+  :config
+  (use-package yasnippet-snippets :defer t :straight t)
+  (yas-global-mode 1))
+
+
 ;;; Language specific configurations
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -248,3 +267,21 @@
   :straight t
   :after rust-mode
   :hook (rust-mode . cargo-minor-mode))
+
+;;; Proof General
+;;; https://github.com/ProofGeneral/PG
+;;;
+;;; See https://github.com/ProofGeneral/PG/issues/385 for the reason of such a strange use-package
+(use-package proof-general
+  :straight t
+  :no-require t)
+(use-package proof-site
+  :mode ("\\.v\\'" . coq-mode))
+
+;;; company-coq-mode
+;;; https://github.com/cpitclaudel/company-coq
+(use-package company-coq
+  :after (company proof-general)
+  :straight t
+  :hook (coq-mode . company-coq-mode))
+
