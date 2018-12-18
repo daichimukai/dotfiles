@@ -56,6 +56,16 @@
 ;;; https://myrica.estable.jp/myricamhistry/
 (set-fontset-font t 'japanese-jisx0208 (font-spec :family "MyricaM M" :size 12.0))
 
+;; For macOS
+(when (eq system-type 'darwin)
+  ;; Anonymous Pro
+  ;; https://www.marksimonson.com/fonts/view/anonymous-pro
+  (set-face-attribute 'default 'nil :family "Anonymous Pro" :height 160)
+
+  ;; Ricty
+  ;; https://www.rs.tus.ac.jp/yyusa/ricty.html
+  (set-fontset-font t 'japanese-jisx0208 (font-spec :family "Ricty" :size 18.0)))
+
 ;;; fira-code-mode
 (use-package fira-code-mode
   :load-path "lisp"
