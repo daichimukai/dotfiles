@@ -1,11 +1,16 @@
-;;; init.el
+;;; init.el --- My init.el
 ;;; https://github.com/daichimukai/dotfiles
+
+;;; Commentary:
 ;;;
 ;;; How did that?
 ;;;
 ;;; Q. How do I open this url in a browser?
 ;;; A. Push "gx" on the url (`browse-url-at-point`)
 ;;;
+
+
+;;; Code:
 
 
 ;;; straight.el
@@ -284,3 +289,7 @@
   :after (company proof-general)
   :straight t
   :hook (coq-mode . company-coq-mode))
+
+
+(provide 'init)
+;;; init.el ends here
