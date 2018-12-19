@@ -47,14 +47,21 @@
 ;;;
 ;;; (ó﹏ò。) < HELP ME! I cannot explain the accurate reason why this config works as exactly I want
 ;;;
+;;; TODO: write code to switch fonts easily
 
 ;;; Hack
 ;;; https://sourcefoundry.org/hack/
-(set-face-attribute 'default 'nil :family "Hack" :height 105)
+;;; (set-face-attribute 'default 'nil :family "Hack" :height 105)
+
+;;; Anonymous Pro
+(set-face-attribute 'default 'nil :family "Anonymous Pro" :height 120)
 
 ;;; MyricaM
 ;;; https://myrica.estable.jp/myricamhistry/
-(set-fontset-font t 'japanese-jisx0208 (font-spec :family "MyricaM M" :size 12.0))
+
+;;; If you want to use Hack font config, uncomment the following line
+; (set-fontset-font t 'japanese-jisx0208 (font-spec :family "MyricaM M" :size 12.0))
+(set-fontset-font t 'japanese-jisx0208 (font-spec :family "MyricaM M" :size 13.5))
 
 ;; For macOS
 (when (eq system-type 'darwin)
@@ -215,6 +222,11 @@
   :init (setq company-tooltip-align-annotations t)
   :hook (prog-mode . company-mode))
 
+;;; Language Server Protocol
+(use-package eglot
+  :defer t
+  :straight t)
+
 
 ;;; syntax check
 
@@ -248,6 +260,16 @@
   (use-package yasnippet-snippets :defer t :straight t)
   (yas-global-mode 1))
 
+(use-package org
+  :defer t
+  :straight t)
+
+(use-package ox-hugo
+  :defer t
+  :straight t
+  :after ox)
+(use-package ox-hugo-auto-export)
+
 
 ;;; Language specific configurations
 
@@ -265,6 +287,8 @@
   :straight t
   :mode
   ("\\.rs\\'" . rust-mode)
+  :init
+  (setq rust-format-on-save t)
   :config
   (bind-key "TAB" 'company-indent-or-complete-common rust-mode-map))
 
@@ -287,19 +311,18 @@
 ;;; https://github.com/ProofGeneral/PG
 ;;;
 ;;; See https://github.com/ProofGeneral/PG/issues/385 for the reason of such a strange use-package
-(use-package proof-general
-  :straight t
-  :no-require t)
 (use-package proof-site
+  :straight proof-general
   :mode ("\\.v\\'" . coq-mode))
 
 ;;; company-coq-mode
 ;;; https://github.com/cpitclaudel/company-coq
 (use-package company-coq
-  :after (company proof-general)
+  :after (company proof-site)
   :straight t
   :hook (coq-mode . company-coq-mode))
 
+(require 'cl-lib)
 
 (provide 'init)
 ;;; init.el ends here
