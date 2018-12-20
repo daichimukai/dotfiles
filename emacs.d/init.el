@@ -34,10 +34,17 @@
 (setq auto-save-default nil)
 (scroll-bar-mode -1) ; disable scroll bar
 (tool-bar-mode -1)
+(when (eq system-type 'darwin)
+  (add-hook 'after-init-hook #'(lambda () (set-frame-parameter nil 'fullscreen 'maximized))))
 
 ;;; use-package
 ;;; https://github.com/jwiegley/use-package
 (straight-use-package 'use-package)
+(eval-when-compile (require 'use-package))
+(eval-and-compile (require 'bind-key))
+
+(setq straight-use-package-by-default t)
+(setq use-package-always-defer t)
 
 
 ;;; Font
@@ -76,6 +83,8 @@
 ;;; fira-code-mode
 (use-package fira-code-mode
   :load-path "lisp"
+  :no-require t
+  :straight nil
   :hook (prog-mode . fira-code-mode)
   :config (fira-code-mode--setup))
 
@@ -138,17 +147,22 @@
 ;;; which-key
 (use-package which-key
   :config (which-key-mode)
-  :straight t)
+  :no-require t)
 
 
 ;;; vcs
+
+;;; git.el
+(use-package git
+  :functions git-run
+  :no-require t)
 
 ;;; magit
 (use-package magit
   :defer t
   :init
   (setq vc-follow-symlinks t)
-  :straight t)
+  :no-require t)
 
 
 ;;; evil
@@ -157,33 +171,39 @@
   (setq evil-want-abbrev-expand-on-insert-exit nil)
   :config
   (define-key evil-normal-state-map (kbd "SPC") 'my-leader-map) ;; change the leader key to space
+  (define-key evil-visual-state-map (kbd "SPC") 'my-leader-map) ;; change the leader key to space
   (evil-mode)
-  :straight t)
+  :demand t)
 
 ;; escape all by "fd"
 (use-package evil-escape
   :after evil
   :config (evil-escape-mode)
-  :straight t)
+  :demand t
+  :no-require t)
 
-(use-package evil-magit :straight t
+(use-package evil-magit
   :after (evil magit)
-  :init (setq evil-magit-state 'normal))
+  :no-require t
+  :init
+  (add-hook 'magit-mode-hook #'(lambda () (require 'evil-magit)))
+  (setq evil-magit-state 'normal))
 
 
 ;;; UI
 
 ;;; moe-theme
 (use-package moe-theme
+  :demand t
   :config
   (moe-dark)
-  (moe-theme-set-color 'orange)
-  :straight t)
+  (moe-theme-set-color 'orange))
 
 ;;; golden-ratio.el
 ;;; https://github.com/roman/golden-ratio.el
 (use-package golden-ratio
-  :straight t
+  :demand t
+  :no-require t
   :config
   (golden-ratio-mode 1)
   (setq golden-ratio-exclude-buffer-names '("*goals*" "*response*"))
@@ -193,6 +213,7 @@
 ;;; https://github.com/Fanael/rainbow-delimiters
 (use-package rainbow-delimiters
   :straight t
+  :no-require t
   :hook (prog-mode . rainbow-delimiters-mode))
 
 
@@ -201,7 +222,8 @@
 ;;; ivy
 ;;; https://github.com/abo-abo/swiper
 (use-package ivy
-  :straight t
+  :demand t
+  :no-require t
   :config
   (setq ivy-count-format "(%d/%d) ")
   (setq ivy-re-builders-alist
@@ -209,23 +231,25 @@
   (ivy-mode 1))
 
 (use-package counsel
-  :straight t
+  :demand t
+  :no-require t
   :config
   (counsel-mode))
 
-(use-package swiper :straight t
+(use-package swiper
+  :no-require t
   :bind (("C-s" . swiper)))
 
 ;;; company-mode
 ;;; http://company-mode.github.io/
-(use-package company :straight t
+(use-package company
+  :no-require t
   :init (setq company-tooltip-align-annotations t)
   :hook (prog-mode . company-mode))
 
 ;;; Language Server Protocol
 (use-package eglot
-  :defer t
-  :straight t)
+  :no-require t)
 
 
 ;;; syntax check
@@ -233,7 +257,7 @@
 ;;; flycheck
 ;;; https://github.com/flycheck/flycheck
 (use-package flycheck
-  :straight t
+  :no-require t
   :config
   (global-flycheck-mode))
 
@@ -242,18 +266,20 @@
 
 ;;; ddskk
 ;;; https://github.com/skk-dev/ddskk
-(use-package ddskk :straight t :defer t)
+(use-package ddskk
+  :no-require t)
 
 
 ;;; Utility
 
 ;;; quickrun.el
 ;;; https://github.com/syohex/emacs-quickrun
-(use-package quickrun :defer t :straight t)
+(use-package quickrun
+  :no-require t)
 
 ;;; yasnippet
 (use-package yasnippet
-  :straight t
+  :no-require t
   :init
   (setq yas-snippet-dirs (list (expand-file-name "snippets" user-emacs-directory)))
   :config
@@ -265,10 +291,8 @@
 ;;; https://www.orgmode.org/ja/index.html
 ;;;
 ;;; See https://github.com/raxod502/radian/blob/develop/emacs/radian.el for the hack below
-(require 'subr-x)
-(use-package git
-  :straight t
-  :functions git-run)
+(eval-when-compile (require 'subr-x)
+		   (require 'git))
 
 (defun org-git-version ()
   "The Git version of `org-mode`.
@@ -296,15 +320,18 @@ Inserted by installing `org-mode` or when a release is made."
                "HEAD")))))
 
 (provide 'org-version)
-(straight-use-package 'org)
+(straight-use-package 'org
+		      :no-require t)
 
 ;;; ox-hugo
 ;;; https://github.com/kaushalmodi/ox-hugo
 (use-package ox-hugo
   :defer t
-  :straight t
-  :after ox)
-(use-package ox-hugo-auto-export)
+  :no-require t
+  :after ox
+  :config
+  (require 'ox-hugo-auto-export))
+
 
 
 ;;; Language specific configurations
@@ -320,7 +347,7 @@ Inserted by installing `org-mode` or when a release is made."
 ;;; rust-mode
 ;;; https://github.com/rust-lang/rust-mode
 (use-package rust-mode
-  :straight t
+  :no-require t
   :mode
   ("\\.rs\\'" . rust-mode)
   :init
@@ -331,7 +358,7 @@ Inserted by installing `org-mode` or when a release is made."
 ;;; racer
 ;;; https://github.com/racer-rust/emacs-racer
 (use-package racer
-  :straight t
+  :no-require t
   :after rust-mode
   :hook ((rust-mode . racer-mode)
 	 (racer-mode . eldoc-mode)))
@@ -339,7 +366,7 @@ Inserted by installing `org-mode` or when a release is made."
 ;;; cargo.el
 ;;; https://github.com/kwrooijen/cargo.el
 (use-package cargo
-  :straight t
+  :no-require t
   :after rust-mode
   :hook (rust-mode . cargo-minor-mode))
 
@@ -355,10 +382,8 @@ Inserted by installing `org-mode` or when a release is made."
 ;;; https://github.com/cpitclaudel/company-coq
 (use-package company-coq
   :after (company proof-site)
-  :straight t
+  :no-require t
   :hook (coq-mode . company-coq-mode))
-
-(require 'cl-lib)
 
 (provide 'init)
 ;;; init.el ends here
