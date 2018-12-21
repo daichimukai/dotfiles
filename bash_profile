@@ -4,6 +4,9 @@
 # General settings
 export PATH=$HOME/bin:$PATH
 
+# clang
+export LIBCLANG_PATH=$(llvm-config --libdir)
+
 # Rust settings
 if [ -f $HOME/.cargo/env ]; then
     source $HOME/.cargo/env

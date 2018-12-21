@@ -40,8 +40,10 @@
 ;;; use-package
 ;;; https://github.com/jwiegley/use-package
 (straight-use-package 'use-package)
+(straight-use-package 'diminish)
 (eval-when-compile (require 'use-package))
 (eval-and-compile (require 'bind-key))
+(eval-and-compile (require 'diminish))
 
 (setq straight-use-package-by-default t)
 (setq use-package-always-defer t)
@@ -81,10 +83,11 @@
   (set-fontset-font t 'japanese-jisx0208 (font-spec :family "Ricty" :size 18.0)))
 
 ;;; fira-code-mode
-(use-package fira-code-mode
+(use-package fira-code
   :load-path "lisp"
   :no-require t
   :straight nil
+  :diminish "</>"
   :hook (prog-mode . fira-code-mode)
   :config (fira-code-mode--setup))
 
@@ -291,7 +294,7 @@
 ;;; https://www.orgmode.org/ja/index.html
 ;;;
 ;;; See https://github.com/raxod502/radian/blob/develop/emacs/radian.el for the hack below
-(eval-when-compile (require 'subr-x)
+(eval-and-compile (require 'subr-x)
 		   (require 'git))
 
 (defun org-git-version ()
