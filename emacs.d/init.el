@@ -63,14 +63,19 @@
 ;;; (set-face-attribute 'default 'nil :family "Hack" :height 105)
 
 ;;; Anonymous Pro
-(set-face-attribute 'default 'nil :family "Anonymous Pro" :height 120)
+;;; (set-face-attribute 'default 'nil :family "Anonymous Pro" :height 120)
+
+;;; Sarasa
+;;; https://github.com/be5invis/Sarasa-Gothic
+(set-face-attribute 'default 'nil :family "Sarasa Term J" :height 120)
 
 ;;; MyricaM
 ;;; https://myrica.estable.jp/myricamhistry/
 
 ;;; If you want to use Hack font config, uncomment the following line
 ; (set-fontset-font t 'japanese-jisx0208 (font-spec :family "MyricaM M" :size 12.0))
-(set-fontset-font t 'japanese-jisx0208 (font-spec :family "MyricaM M" :size 13.5))
+; (set-fontset-font t 'japanese-jisx0208 (font-spec :family "MyricaM M" :size 13.5))
+; (set-fontset-font t 'japanese-jisx0208 (font-spec :family "Sarasa Term J" :size 12.0))
 
 ;; For macOS
 (when (eq system-type 'darwin)
@@ -289,6 +294,12 @@
   (use-package yasnippet-snippets :defer t :straight t)
   (yas-global-mode 1))
 
+;;; projectile
+;;; https://github.com/bbatsov/projectile
+(use-package projectile
+  :no-require t
+  :config
+  (projectile-mode +1))
 
 ;;; org-mode
 ;;; https://www.orgmode.org/ja/index.html
