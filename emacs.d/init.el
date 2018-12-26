@@ -67,7 +67,9 @@
 
 ;;; Sarasa
 ;;; https://github.com/be5invis/Sarasa-Gothic
-(set-face-attribute 'default 'nil :family "Sarasa Term J" :height 120)
+(if (eq system-type 'darwin)
+      (set-face-attribute 'default 'nil :family "Sarasa Term J" :height 160)
+  (set-face-attribute 'default 'nil :family "Sarasa Term J" :height 120))
 
 ;;; MyricaM
 ;;; https://myrica.estable.jp/myricamhistry/
@@ -78,14 +80,14 @@
 ; (set-fontset-font t 'japanese-jisx0208 (font-spec :family "Sarasa Term J" :size 12.0))
 
 ;; For macOS
-(when (eq system-type 'darwin)
+;(when (eq system-type 'darwin)
   ;; Anonymous Pro
   ;; https://www.marksimonson.com/fonts/view/anonymous-pro
-  (set-face-attribute 'default 'nil :family "Anonymous Pro" :height 160)
+  ;(set-face-attribute 'default 'nil :family "Anonymous Pro" :height 160)
 
   ;; Ricty
   ;; https://www.rs.tus.ac.jp/yyusa/ricty.html
-  (set-fontset-font t 'japanese-jisx0208 (font-spec :family "Ricty" :size 18.0)))
+  ; (set-fontset-font t 'japanese-jisx0208 (font-spec :family "Ricty" :size 18.0)))
 
 ;;; fira-code-mode
 (use-package fira-code
