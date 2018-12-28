@@ -34,6 +34,7 @@
 (setq auto-save-default nil)
 (scroll-bar-mode -1) ; disable scroll bar
 (tool-bar-mode -1)
+(column-number-mode +1)
 (when (eq system-type 'darwin)
   (add-hook 'after-init-hook #'(lambda () (set-frame-parameter nil 'fullscreen 'maximized))))
 
@@ -303,6 +304,14 @@
   :config
   (projectile-mode +1))
 
+;;; smartparens
+;;; https://github.com/Fuco1/smartparens
+(use-package smartparens
+  :no-require
+  :config
+  (require 'smartparens-config)
+  :hook (prog-mode . smartparens-mode))
+
 ;;; org-mode
 ;;; https://www.orgmode.org/ja/index.html
 ;;;
@@ -336,8 +345,30 @@ Inserted by installing `org-mode` or when a release is made."
                "HEAD")))))
 
 (provide 'org-version)
-(straight-use-package 'org
-		      :no-require t)
+(use-package org
+  :no-require t
+  :config
+  (with-eval-after-load 'org-capture
+    ;; https://ox-hugo.scripter.co/doc/org-capture-setup/
+    (defun org-hugo-new-subtree-post-capture-template ()
+      "Returns `org-capture' template string for new Hugo post.
+See `org-capture-templates' for more infomation. "
+      (let* ((title (read-from-minibuffer "Post title: "))
+	     (fname (org-hugo-slug title)))
+	(mapconcat #'identity
+		   `(
+		     ,(concat "* TODO " title)
+		     ":PROPERTIES:"
+		     ,(concat ":EXPORT_FILE_NAME: " fname)
+		     ":END:"
+		     "%?\n")
+		   "\n")))
+    (add-to-list 'org-capture-templates
+		 '("b"
+		   "Blog post"
+		   entry
+		   (file+olp "blog.org" "Posts")
+		   (function org-hugo-new-subtree-post-capture-template)))))
 
 ;;; ox-hugo
 ;;; https://github.com/kaushalmodi/ox-hugo
@@ -345,6 +376,8 @@ Inserted by installing `org-mode` or when a release is made."
   :defer t
   :no-require t
   :after ox
+  :init
+  (setq org-hide-leading-stars t)
   :config
   (require 'ox-hugo-auto-export))
 
@@ -400,6 +433,11 @@ Inserted by installing `org-mode` or when a release is made."
   :after (company proof-site)
   :no-require t
   :hook (coq-mode . company-coq-mode))
+
+;;; eros
+;;; https://github.com/xiongtx/eros
+(use-package eros
+  :no-require t)
 
 (provide 'init)
 ;;; init.el ends here
