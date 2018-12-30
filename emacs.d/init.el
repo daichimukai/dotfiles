@@ -49,6 +49,12 @@
 (setq straight-use-package-by-default t)
 (setq use-package-always-defer t)
 
+(defmacro safe-diminish (file mode &optional newname)
+  `(with-eval-after-load ,file
+     (diminish ,mode ,newname)))
+(safe-diminish "emacs-lisp" 'emacs-lisp-mode "el")
+(safe-diminish "undo-tree" 'undo-tree-mode "戻")
+(safe-diminish "eldoc" 'eldoc)
 
 ;;; For writing elisp
 
@@ -110,7 +116,7 @@
   :load-path "lisp"
   :no-require t
   :straight nil
-  :diminish "</>"
+  :diminish nil
   :disabled t
   :hook (prog-mode . fira-code-mode)
   :config (fira-code-mode--setup))
@@ -187,6 +193,7 @@
 ;;; magit
 (use-package magit
   :defer t
+  :diminish "魔"
   :init
   (setq vc-follow-symlinks t)
   :no-require t)
@@ -205,6 +212,7 @@
 ;; escape all by "fd"
 (use-package evil-escape
   :after evil
+  :diminish nil
   :config (evil-escape-mode)
   :demand t
   :no-require t)
@@ -231,6 +239,7 @@
 (use-package golden-ratio
   :demand t
   :no-require t
+  :diminish "φ"
   :config
   (golden-ratio-mode 1)
   (setq golden-ratio-exclude-buffer-names '("*goals*" "*response*"))
@@ -271,6 +280,7 @@
 ;;; http://company-mode.github.io/
 (use-package company
   :no-require t
+  :diminish "補"
   :init (setq company-tooltip-align-annotations t)
   :hook (prog-mode . company-mode))
 
