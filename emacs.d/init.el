@@ -49,6 +49,21 @@
 (setq straight-use-package-by-default t)
 (setq use-package-always-defer t)
 
+
+;;; For writing elisp
+
+;;; dash.el
+;;; https://github.com/magnars/dash.el
+(use-package dash :no-require t)
+
+;;; s.el
+;;; https://github.com/magnars/s.el
+(use-package s :no-require t)
+					;
+;;; f.el
+;;; https://github.com/rejeep/f.el
+(use-package f :no-require t)
+
 
 ;;; Font
 ;;;
@@ -96,6 +111,7 @@
   :no-require t
   :straight nil
   :diminish "</>"
+  :disabled t
   :hook (prog-mode . fira-code-mode)
   :config (fira-code-mode--setup))
 
@@ -354,15 +370,16 @@ Inserted by installing `org-mode` or when a release is made."
       "Returns `org-capture' template string for new Hugo post.
 See `org-capture-templates' for more infomation. "
       (let* ((title (read-from-minibuffer "Post title: "))
-	     (fname (org-hugo-slug title)))
-	(mapconcat #'identity
-		   `(
-		     ,(concat "* TODO " title)
-		     ":PROPERTIES:"
-		     ,(concat ":EXPORT_FILE_NAME: " fname)
-		     ":END:"
-		     "%?\n")
-		   "\n")))
+	     (fname (org-hugo-slug title))
+	     (date (format-time-string "%Y-%m-%d" (current-time))))
+	(s-join "\n"
+		`(
+		  ,(concat "* TODO " title)
+		  ":PROPERTIES:"
+		  ,(concat ":EXPORT_FILE_NAME: " fname)
+		  ,(concat ":EXPORT_DATE: " date)
+		  ":END:"
+		  "%?\n"))))
     (add-to-list 'org-capture-templates
 		 '("b"
 		   "Blog post"
