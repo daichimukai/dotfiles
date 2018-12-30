@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -euo pipefail
+
+has() {
+    type "$1" > /dev/null 2>&1
+    return $?
+}
+
+if ! has git; then
+    echo "Error: git is not in $PATH. Check if git is installed and in $PATH."
+    exit 1
+fi
+
+git clone github.com/daichimukai/dotfiles $HOME/.dotfiles
