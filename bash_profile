@@ -5,7 +5,9 @@
 export PATH=$HOME/bin:$PATH
 
 # clang
-export LIBCLANG_PATH=$(llvm-config --libdir)
+if $(type llmv-config > /dev/null 2>&1); then
+    export LIBCLANG_PATH=$(llvm-config --libdir)
+fi
 
 # Rust settings
 if [ -f $HOME/.cargo/env ]; then
