@@ -4,6 +4,10 @@
 # General settings
 export PATH=$HOME/bin:$PATH
 
+# For python encoding issue
+# LC_CTYPE is sufficient?
+export LANG=en_US.UTF-8
+
 # clang
 if $(type llmv-config > /dev/null 2>&1); then
     export LIBCLANG_PATH=$(llvm-config --libdir)
