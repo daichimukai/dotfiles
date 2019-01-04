@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -u
+
+files=("bashrc" "bash_profile" "gitconfig" "gitignore_global" "emacs.d" "tmux.conf")
+for f in ${files[@]}
+do
+    ln -sf $HOME/.dotfiles/"$f" $HOME/."$f"
+done
