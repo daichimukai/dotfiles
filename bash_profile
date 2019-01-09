@@ -2,14 +2,14 @@
 # This file is sourced by bash for login shells.
 
 # General settings
-export PATH=$HOME/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 
 # For python encoding issue
 # LC_CTYPE is sufficient?
 export LANG=en_US.UTF-8
 
 # clang
-if $(type llmv-config > /dev/null 2>&1); then
+if $(type llvm-config > /dev/null 2>&1); then
     export LIBCLANG_PATH=$(llvm-config --libdir)
 fi
 
