@@ -29,6 +29,8 @@
   (load bootstrap-file nil 'nomessage))
 
 (cd "~/")
+
+(setq custom-file (locate-user-emacs-file "custom.el"))
 (setq inhibit-startup-message t) ; no startup screen
 (setq make-backup-files nil)
 (setq auto-save-default nil)
@@ -338,6 +340,10 @@
   (require 'smartparens-config)
   :hook (prog-mode . smartparens-mode))
 
+;;; ParEdit
+(use-package paredit
+  :no-require t)
+
 ;;; org-mode
 ;;; https://www.orgmode.org/ja/index.html
 ;;;
@@ -460,6 +466,14 @@ See `org-capture-templates' for more infomation. "
   :after (company proof-site)
   :no-require t
   :hook (coq-mode . company-coq-mode))
+
+;;; lean-mode
+;;; https://github.com/leanprover/lean-mode
+(use-package lean-mode
+  :no-require t)
+(use-package company-lean
+  :no-require t
+  :after (company lean-mode))
 
 ;;; eros
 ;;; https://github.com/xiongtx/eros
