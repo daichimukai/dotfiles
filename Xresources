@@ -8,9 +8,11 @@
 #define JP_PIXEL_SIZE 16
 #define JP_FONT_FAMILY Sarasa Term J
 #define FALLBACK_FONT_FAMILY Dejavu Sans Mono
+#define EMOJI_FONT_FAMILY Symbola
+#define EMOJI_PIXEL_SIZE 16
 
 ! font settting
-URxvt*font: xft:DEFAULT_FONT_FAMILY:pixelsize=DEFAULT_PIXEL_SIZE, xft:JP_FONT_FAMILY:style=Regular:pixelsize=JP_PIXEL_SIZE, xft:FALLBACK_FONT_FAMILY:pixelsize=DEFAULT_PIXEL_SIZE
+URxvt*font: xft:DEFAULT_FONT_FAMILY:pixelsize=DEFAULT_PIXEL_SIZE, xft:JP_FONT_FAMILY:style=Regular:pixelsize=JP_PIXEL_SIZE, xft:EMOJI_FONT_FAMILY:minspace=False, xft:FALLBACK_FONT_FAMILY:pixelsize=DEFAULT_PIXEL_SIZE
 URxvt*allow_bold: true
 URxvt*boldFont: xft:DEFAULT_FONT_FAMILY:style=Bold:pixelsize=DEFAULT_PIXEL_SIZE, xft:JP_FONT_FAMILY:style=Bold:pixelsize=JP_PIXEL_SIZE, xft:FALLBACK_FONT_FAMILY:style=Bold:pixelsize=DEFAULT_PIXEL_SIZE
 ! URxvt*letterSpace: -1
