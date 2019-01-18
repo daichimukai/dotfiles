@@ -344,6 +344,11 @@
 (use-package paredit
   :no-require t)
 
+;;; multiple-cursors.el
+;;; https://github.com/magnars/multiple-cursors.el
+(use-package multiple-cursors
+  :no-require t)
+
 ;;; org-mode
 ;;; https://www.orgmode.org/ja/index.html
 ;;;
