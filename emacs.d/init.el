@@ -203,6 +203,7 @@
 
 ;;; evil
 (use-package evil
+  :disabled t
   :init
   (setq evil-want-abbrev-expand-on-insert-exit nil)
   :config
@@ -217,12 +218,14 @@
   :diminish nil
   :config (evil-escape-mode)
   :demand t
+  :disabled t
   :no-require t)
 
 (use-package evil-magit
   :after (evil magit)
   :no-require t
   :init
+  :disabled t
   (add-hook 'magit-mode-hook #'(lambda () (require 'evil-magit)))
   (setq evil-magit-state 'normal))
 
@@ -310,6 +313,10 @@
 
 
 ;;; Utility
+
+;;; hydra
+;;; https://github.com/abo-abo/hydra
+(use-package hydra :no-require)
 
 ;;; quickrun.el
 ;;; https://github.com/syohex/emacs-quickrun
@@ -479,6 +486,13 @@ See `org-capture-templates' for more infomation. "
 (use-package company-lean
   :no-require t
   :after (company lean-mode))
+
+;;; slime
+(use-package slime
+  :init
+  (setq inferior-lisp-program "sbcl")
+  (setq slime-contribs '(slime-fancy))
+  :no-require)
 
 ;;; eros
 ;;; https://github.com/xiongtx/eros
