@@ -6,7 +6,7 @@
 ;;; How did that?
 ;;;
 ;;; Q. How do I open this url in a browser?
-;;; A. Push "gx" on the url (`browse-url-at-point`)
+;;; A. M-x browse-url-at-point
 ;;;
 
 
