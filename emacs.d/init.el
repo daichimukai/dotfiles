@@ -426,7 +426,6 @@ See `org-capture-templates' for more infomation. "
   :config
   (require 'ox-hugo-auto-export))
 
-
 
 ;;; Language specific configurations
 

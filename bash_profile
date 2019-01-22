@@ -3,6 +3,9 @@
 
 # General settings
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
+if [ "$(uname)" == "Darwin" ]; then
+    export PATH=$HOME/Library/Python/3.7/bin:$PATH
+fi
 
 # For python encoding issue
 # LC_CTYPE is sufficient?
