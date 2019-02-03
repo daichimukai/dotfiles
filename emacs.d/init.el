@@ -55,7 +55,7 @@
   `(with-eval-after-load ,file
      (diminish ,mode ,newname)))
 (safe-diminish "emacs-lisp" 'emacs-lisp-mode "el")
-(safe-diminish "undo-tree" 'undo-tree-mode "戻")
+(safe-diminish "undo-tree" 'undo-tree-mode)
 (safe-diminish "eldoc" 'eldoc)
 
 ;;; For writing elisp
@@ -144,6 +144,19 @@
   (interactive)
   (switch-to-buffer (get-buffer-create "*scratch*")))
 
+(defun my/blink-mode-line (color)
+  "Blink mode line with COLOR."
+  (let ((orig-fb (face-background 'mode-line)))
+    (set-face-background 'mode-line color)
+    (run-with-timer 0.1 nil (lambda (fb) (set-face-background 'mode-line fb)) orig-fb)))
+(defun my/blink-mode-line--pink ()
+  (my/blink-mode-line "pink"))
+(defun my/blink-mode-line--sky-blue ()
+  (my/blink-mode-line "sky blue"))
+
+(setq ring-bell-function 'my/blink-mode-line--pink)
+(add-hook 'after-save-hook 'my/blink-mode-line--sky-blue)
+
 
 ;;; which-key
 (use-package which-key
@@ -198,7 +211,6 @@
 ;;; magit
 (use-package magit
   :defer t
-  :diminish "魔"
   :init
   (setq vc-follow-symlinks t)
   :no-require t)
@@ -289,7 +301,7 @@
 ;;; http://company-mode.github.io/
 (use-package company
   :no-require t
-  :diminish "補"
+  :diminish ""
   :init (setq company-tooltip-align-annotations t)
   :hook (prog-mode . company-mode))
 
@@ -518,6 +530,14 @@ See `org-capture-templates' for more infomation. "
 ;;; rg
 (use-package rg
   :no-require t)
+
+(use-package smart-mode-line
+  :no-require t
+  :defer nil
+  :init
+  (setq sml/theme 'dark)
+  :config
+  (sml/setup))
 
 (provide 'init)
 ;;; init.el ends here
