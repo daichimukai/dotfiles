@@ -67,7 +67,7 @@
 ;;; s.el
 ;;; https://github.com/magnars/s.el
 (use-package s :no-require t)
-					;
+
 ;;; f.el
 ;;; https://github.com/rejeep/f.el
 (use-package f :no-require t)
@@ -145,8 +145,17 @@
   (switch-to-buffer (get-buffer-create "*scratch*")))
 
 
+;;; which-key
+(use-package which-key
+  :defer nil
+  :init
+  (setq which-key-enable-extended-define-key t)
+  :config (which-key-mode))
+
+
 ;;; leader key
 (define-prefix-command 'my-leader-map) ;; my leader key
+(bind-key "S-SPC" my-leader-map)
 (bind-key "SPC" 'execute-extended-command my-leader-map)
 
 ;;; file map
@@ -177,12 +186,6 @@
 	   :prefix "e" ;; bind to '<leader>fe'
 	   :prefix-map my-init-el-map
 	   ("d" . my/open-init-el))
-
-
-;;; which-key
-(use-package which-key
-  :config (which-key-mode)
-  :no-require t)
 
 
 ;;; vcs
@@ -245,6 +248,7 @@
   :demand t
   :no-require t
   :diminish "φ"
+  :disabled t
   :config
   (golden-ratio-mode 1)
   (setq golden-ratio-exclude-buffer-names '("*goals*" "*response*"))
@@ -326,16 +330,29 @@
 ;;; yasnippet
 (use-package yasnippet
   :no-require t
+  :defer nil
+  :after which-key
   :init
   (setq yas-snippet-dirs (list (expand-file-name "snippets" user-emacs-directory)))
   :config
   (use-package yasnippet-snippets :defer t :straight t)
+  (define-key my-leader-map "y" '("YASnippet"))
+  (bind-keys  :map my-leader-map
+	      :prefix "y"
+	      :prefix-map my-yasnippet-map
+	      :prefix-docstring "YASnippet"
+	      ("s" . yas-insert-snippet)
+	      ("n" . yas-new-snippet)
+	      ("r" . yas-recompile-all)
+	      ("R" . yas-reload-all)
+	      ("v" . yas-visit-snippet-file))
   (yas-global-mode 1))
 
 ;;; projectile
 ;;; https://github.com/bbatsov/projectile
 (use-package projectile
   :no-require t
+  :defer nil
   :config
   (projectile-mode +1))
 
@@ -496,6 +513,10 @@ See `org-capture-templates' for more infomation. "
 ;;; eros
 ;;; https://github.com/xiongtx/eros
 (use-package eros
+  :no-require t)
+
+;;; rg
+(use-package rg
   :no-require t)
 
 (provide 'init)
