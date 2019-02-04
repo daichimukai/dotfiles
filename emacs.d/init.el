@@ -149,10 +149,16 @@
   (let ((orig-fb (face-background 'mode-line)))
     (set-face-background 'mode-line color)
     (run-with-timer 0.1 nil (lambda (fb) (set-face-background 'mode-line fb)) orig-fb)))
-(defun my/blink-mode-line--pink ()
-  (my/blink-mode-line "pink"))
-(defun my/blink-mode-line--sky-blue ()
-  (my/blink-mode-line "sky blue"))
+
+(defmacro my/blink-mode-line--color (color)
+  (list
+   'defun (intern (format "my/blink-mode-line--%s" (replace-regexp-in-string " " "-" (format "%s" color)))) ()
+   (list 'my/blink-mode-line (format "%s" color))))
+
+(my/blink-mode-line--color "pink")
+(my/blink-mode-line--color "sky blue")
+(my/blink-mode-line--color "white")
+(my/blink-mode-line--color "green")
 
 (setq ring-bell-function 'my/blink-mode-line--pink)
 (add-hook 'after-save-hook 'my/blink-mode-line--sky-blue)
