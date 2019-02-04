@@ -163,12 +163,11 @@ label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
 ; icon
 ws-icon-0 = 1:terminal;
-ws-icon-1 = 2:chrome;
-ws-icon-2 = 3:discord;
-ws-icon-3 = 4:obs;
-ws-icon-4 = 5:mail;
+ws-icon-1 = 2:emacs;
+ws-icon-2 = 3:browser;
+ws-icon-3 = 4:mail;
+ws-icon-4 = 5:slack;
 ws-icon-5 = 6:key;
-ws-icon-6 = 7;
 ws-icon-default = 
 
 [module/mpd]
