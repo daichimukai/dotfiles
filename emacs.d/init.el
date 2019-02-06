@@ -174,7 +174,7 @@
 
 ;;; leader key
 (define-prefix-command 'my-leader-map) ;; my leader key
-(bind-key "S-SPC" my-leader-map)
+(bind-key "C-z" my-leader-map)
 (bind-key "SPC" 'execute-extended-command my-leader-map)
 
 ;;; file map
@@ -258,7 +258,9 @@
   :demand t
   :config
   (moe-dark)
-  (moe-theme-set-color 'orange))
+  ;;(moe-theme-set-color 'orange)
+  )
+
 
 ;;; golden-ratio.el
 ;;; https://github.com/roman/golden-ratio.el
