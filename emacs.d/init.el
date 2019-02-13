@@ -38,7 +38,9 @@
 (tool-bar-mode -1)
 (column-number-mode +1)
 (when (eq system-type 'darwin)
-  (add-hook 'after-init-hook #'(lambda () (set-frame-parameter nil 'fullscreen 'maximized))))
+  (add-hook 'after-init-hook #'(lambda () (set-frame-parameter nil 'fullscreen 'maximized)))
+  (if (functionp 'mac-auto-operator-composition-mode)
+      (mac-auto-operator-composition-mode)))
 
 ;;; use-package
 ;;; https://github.com/jwiegley/use-package
@@ -92,7 +94,7 @@
 ;;; Sarasa
 ;;; https://github.com/be5invis/Sarasa-Gothic
 (if (eq system-type 'darwin)
-      (set-face-attribute 'default 'nil :family "Sarasa Term J" :height 160)
+      (set-face-attribute 'default 'nil :family "Sarasa Mono J" :height 160)
   (set-face-attribute 'default 'nil :family "Sarasa Term J" :height 120))
 
 ;;; MyricaM
@@ -155,13 +157,19 @@
    'defun (intern (format "my/blink-mode-line--%s" (replace-regexp-in-string " " "-" (format "%s" color)))) ()
    (list 'my/blink-mode-line (format "%s" color))))
 
-(my/blink-mode-line--color "pink")
-(my/blink-mode-line--color "sky blue")
-(my/blink-mode-line--color "white")
-(my/blink-mode-line--color "green")
+(defmacro my/blink-mode-line--defun-colors (&rest colors)
+  (cons 'progn
+	(mapcar (lambda (color)
+		  (let ((color-name (format "%s" color)))
+		    (list
+		     'defun (intern (format "my/blink-mode-line-%s" (replace-regexp-in-string " " "-" color-name))) ()
+		     (list 'my/blink-mode-line color-name))))
+		colors)))
 
-(setq ring-bell-function 'my/blink-mode-line--pink)
-(add-hook 'after-save-hook 'my/blink-mode-line--sky-blue)
+(my/blink-mode-line--defun-colors pink "sky blue" white black green)
+
+(setq ring-bell-function 'my/blink-mode-line-pink)
+(add-hook 'after-save-hook 'my/blink-mode-line-sky-blue)
 
 
 ;;; which-key

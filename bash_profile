@@ -34,7 +34,7 @@ if [ -d $HOME/.go ]; then
 fi
 
 # node.js
-export PATH=~/.npm-global/bin:$PATH
+export PATH=~/.npm-global/bin:~/.nodebrew/current/bin:$PATH
 
 # opam configuration
 source $HOME/.opam/opam-init/init.sh > /dev/null 2>&1 || true
