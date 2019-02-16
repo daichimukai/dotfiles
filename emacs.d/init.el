@@ -34,6 +34,7 @@
 (setq inhibit-startup-message t) ; no startup screen
 (setq make-backup-files nil)
 (setq auto-save-default nil)
+(setq-default indent-tabs-mode nil)
 (scroll-bar-mode -1) ; disable scroll bar
 (tool-bar-mode -1)
 (column-number-mode +1)
@@ -95,7 +96,7 @@
 ;;; https://github.com/be5invis/Sarasa-Gothic
 (if (eq system-type 'darwin)
       (set-face-attribute 'default 'nil :family "Sarasa Mono J" :height 160)
-  (set-face-attribute 'default 'nil :family "Sarasa Term J" :height 120))
+  (set-face-attribute 'default 'nil :family "Sarasa Mono J" :height 120))
 
 ;;; MyricaM
 ;;; https://myrica.estable.jp/myricamhistry/
@@ -512,16 +513,16 @@ See `org-capture-templates' for more infomation. "
 ;;; https://github.com/ProofGeneral/PG
 ;;;
 ;;; See https://github.com/ProofGeneral/PG/issues/385 for the reason of such a strange use-package
-(use-package proof-site
-  :straight proof-general
-  :mode ("\\.v\\'" . coq-mode))
+;(use-package proof-site
+;  :straight proof-general
+;  :mode ("\\.v\\'" . coq-mode))
 
 ;;; company-coq-mode
 ;;; https://github.com/cpitclaudel/company-coq
-(use-package company-coq
-  :after (company proof-site)
-  :no-require t
-  :hook (coq-mode . company-coq-mode))
+;(use-package company-coq
+;  :after (company proof-site)
+;  :no-require t
+;  :hook (coq-mode . company-coq-mode))
 
 ;;; lean-mode
 ;;; https://github.com/leanprover/lean-mode
@@ -554,6 +555,9 @@ See `org-capture-templates' for more infomation. "
   (setq sml/theme 'dark)
   :config
   (sml/setup))
+
+(use-package olivetti
+  :no-require t)
 
 (provide 'init)
 ;;; init.el ends here
