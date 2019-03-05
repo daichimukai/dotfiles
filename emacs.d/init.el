@@ -169,8 +169,8 @@
 
 (my/blink-mode-line--defun-colors pink "sky blue" white black green)
 
-(setq ring-bell-function 'my/blink-mode-line-pink)
-(add-hook 'after-save-hook 'my/blink-mode-line-sky-blue)
+;; (setq ring-bell-function 'my/blink-mode-line-pink)
+;; (add-hook 'after-save-hook 'my/blink-mode-line-sky-blue)
 
 
 ;;; which-key
@@ -262,14 +262,27 @@
 
 ;;; UI
 
+;;; doom-themes
+;;; https://github.com/hlissner/emacs-doom-themes
+(use-package doom-themes
+  :no-require t
+  :defer nil
+  :custom
+  (doom-themes-enable-italic t)
+  (doom-themes-enable-bold t)
+  :custom-face
+  (doom-modeline-bar ((t (:background "#6272a4"))))
+  :config
+  (load-theme 'doom-dracula t))
+
 ;;; moe-theme
 (use-package moe-theme
   :demand t
   :config
+  :disabled t
   (moe-dark)
   ;;(moe-theme-set-color 'orange)
   )
-
 
 ;;; golden-ratio.el
 ;;; https://github.com/roman/golden-ratio.el
@@ -549,12 +562,21 @@ See `org-capture-templates' for more infomation. "
   :no-require t)
 
 (use-package smart-mode-line
+  :disabled t
   :no-require t
   :defer nil
   :init
   (setq sml/theme 'dark)
   :config
   (sml/setup))
+
+;;; doom-modeline
+;;; https://github.com/seagle0128/doom-modeline
+(use-package doom-modeline
+  :no-require t
+  :defer nil
+  :config
+  (doom-modeline-mode 1))
 
 (use-package olivetti
   :no-require t)
