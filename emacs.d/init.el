@@ -8,6 +8,8 @@
 ;;; Q. How do I open this url in a browser?
 ;;; A. M-x browse-url-at-point
 ;;;
+;;; Q. Icon font is missing.
+;;; A. Try `M-x all-the-icons-install-fonts'.
 
 
 ;;; Code:
