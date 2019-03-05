@@ -273,6 +273,7 @@
   :custom-face
   (doom-modeline-bar ((t (:background "#6272a4"))))
   :config
+  (doom-themes-visual-bell-config)
   (load-theme 'doom-dracula t))
 
 ;;; moe-theme
@@ -580,6 +581,13 @@ See `org-capture-templates' for more infomation. "
 
 (use-package olivetti
   :no-require t)
+
+;;; avy
+;;; https://github.com/abo-abo/avy
+(use-package avy
+  :defer nil
+  :config
+  (global-set-key (kbd "C-:") 'avy-goto-char))
 
 (provide 'init)
 ;;; init.el ends here
