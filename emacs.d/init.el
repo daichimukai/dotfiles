@@ -149,6 +149,15 @@
   (interactive)
   (switch-to-buffer (get-buffer-create "*scratch*")))
 
+;;; http://d.hatena.ne.jp/kiwanami/20091222/1261504543
+(defun my/other-window-or-split ()
+  "Eval `other-window'. If there is only one window, split holizontally in advance."
+  (interactive)
+  (when (one-window-p)
+    (split-window-horizontally))
+  (other-window 1))
+(global-set-key (kbd "C-t") 'my/other-window-or-split)
+
 (defun my/blink-mode-line (color)
   "Blink mode line with COLOR."
   (let ((orig-fb (face-background 'mode-line)))
@@ -328,7 +337,7 @@
 
 (use-package swiper
   :no-require t
-  :bind (("C-s" . swiper)))
+  :bind (("M-s s" . swiper)))
 
 ;;; company-mode
 ;;; http://company-mode.github.io/
@@ -454,6 +463,7 @@ Inserted by installing `org-mode` or when a release is made."
 (use-package org
   :no-require t
   :config
+  (org-indent-mode)
   (with-eval-after-load 'org-capture
     ;; https://ox-hugo.scripter.co/doc/org-capture-setup/
     (defun org-hugo-new-subtree-post-capture-template ()
