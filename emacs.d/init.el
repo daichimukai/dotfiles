@@ -539,9 +539,9 @@ See `org-capture-templates' for more infomation. "
 ;;; https://github.com/ProofGeneral/PG
 ;;;
 ;;; See https://github.com/ProofGeneral/PG/issues/385 for the reason of such a strange use-package
-;(use-package proof-site
-;  :straight proof-general
-;  :mode ("\\.v\\'" . coq-mode))
+(use-package proof-site
+  :straight proof-general
+  :mode ("\\.v\\'" . coq-mode))
 
 ;;; company-coq-mode
 ;;; https://github.com/cpitclaudel/company-coq
