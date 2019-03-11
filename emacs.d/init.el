@@ -156,7 +156,7 @@
   (when (one-window-p)
     (split-window-horizontally))
   (other-window 1))
-(global-set-key (kbd "C-t") 'my/other-window-or-split)
+(bind-key "C-t" 'my/other-window-or-split)
 
 (defun my/blink-mode-line (color)
   "Blink mode line with COLOR."
@@ -174,7 +174,9 @@
 	(mapcar (lambda (color)
 		  (let ((color-name (format "%s" color)))
 		    (list
-		     'defun (intern (format "my/blink-mode-line-%s" (replace-regexp-in-string " " "-" color-name))) ()
+		     'defun (intern (format "my/blink-mode-line-%s"
+                                            (replace-regexp-in-string " " "-" color-name)))
+                     ()
 		     (list 'my/blink-mode-line color-name))))
 		colors)))
 
@@ -600,6 +602,11 @@ See `org-capture-templates' for more infomation. "
   :defer nil
   :config
   (global-set-key (kbd "C-:") 'avy-goto-char))
+
+(use-package editorconfig
+  :no-require
+  :config
+  (editorconfig-mode +1))
 
 (provide 'init)
 ;;; init.el ends here
