@@ -608,5 +608,8 @@ See `org-capture-templates' for more infomation. "
   :config
   (editorconfig-mode +1))
 
+(use-package tuareg
+  :no-require t)
+
 (provide 'init)
 ;;; init.el ends here
