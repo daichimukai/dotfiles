@@ -547,10 +547,10 @@ See `org-capture-templates' for more infomation. "
 
 ;;; company-coq-mode
 ;;; https://github.com/cpitclaudel/company-coq
-;(use-package company-coq
-;  :after (company proof-site)
-;  :no-require t
-;  :hook (coq-mode . company-coq-mode))
+(use-package company-coq
+  :after (company proof-general)
+  :no-require t
+  :hook (coq-mode . company-coq-mode))
 
 ;;; lean-mode
 ;;; https://github.com/leanprover/lean-mode
