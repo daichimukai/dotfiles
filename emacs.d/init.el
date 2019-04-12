@@ -539,8 +539,6 @@ See `org-capture-templates' for more infomation. "
 
 ;;; Proof General
 ;;; https://github.com/ProofGeneral/PG
-;;;
-;;; See https://github.com/ProofGeneral/PG/issues/385 for the reason of such a strange use-package
 (use-package proof-general
   :no-require t
   :mode ("\\.v\\'" . coq-mode))
