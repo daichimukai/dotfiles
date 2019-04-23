@@ -609,5 +609,22 @@ See `org-capture-templates' for more infomation. "
 (use-package tuareg
   :no-require t)
 
+;;; https://github.com/fxbois/web-mode
+(use-package web-mode
+  :init
+  (setq web-mode-attr-indent-offset nil)
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-sql-indent-offset 2)
+  :no-require t
+  :mode
+  ("\\.js\\'" . web-mode))
+
+;;; https://github.com/prettier/prettier-emacs
+(use-package prettier-js
+  :no-require t
+  :hook (web-mode . prettier-js-mode))
+
 (provide 'init)
 ;;; init.el ends here
