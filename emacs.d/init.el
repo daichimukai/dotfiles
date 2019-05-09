@@ -626,5 +626,9 @@ See `org-capture-templates' for more infomation. "
   :no-require t
   :hook (web-mode . prettier-js-mode))
 
+;;; https://github.com/sonatard/clang-format
+(use-package clang-format
+  :no-require t)
+
 (provide 'init)
 ;;; init.el ends here
