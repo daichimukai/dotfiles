@@ -631,5 +631,55 @@ See `org-capture-templates' for more infomation. "
 (use-package clang-format
   :no-require t)
 
+(defhydra hydra-zoom (global-map "<f3>")
+  "zoom in/out"
+  ("g" text-scale-increase "in")
+  ("l" text-scale-decrease "out")
+  ("0" (text-scale-set 0) "reset" :color blue))
+
+(defhydra hydra-multiple-cursors (global-map "<f4>" :hint nil)
+  "
+Multiple Cursors
+
+^One^                     ^Many^                       ^Special
+^^^^^-----------------------------------------------------------------------
+_w_: next word            _W_: all word                _R_: reverse order
+_s_: next symbol          _S_: all symbol              _u_: sort
+_M-w_: prev word          _l_: all lines               _0_: increasing numbers from 0
+^   ^                     _a_: beginnings of lines     _1_: increasing numbers from 1
+^   ^                     _e_: ends of lines           _c_: Increasing letters
+^   ^                     _r_: region                  ^
+^   ^                     _d_: dwim                    ^
+
+_q_: quit
+"
+  ("w" mc/mark-next-like-this-word)
+  ("s" mc/mark-next-like-this-symbol)
+  ("M-w" mc/mark-previous-like-this-word)
+
+  ("W" mc/mark-all-words-like-this :color blue)
+  ("S" mc/mark-all-symbols-like-this :color blue)
+  ("l" mc/edit-lines :color blue)
+  ("r" mc/mark-all-in-region :color blue)
+  ("a" mc/edit-beginnings-of-lines :color blue)
+  ("e" mc/edit-ends-of-lines :color blue)
+  ("d" mc/mark-all-dwim)
+
+  ("R" mc/reverse-regions)
+  ("u" mc/sort-regions)
+  ("0" mc/insert-numbers)
+  ("1" (mc/insert-numbers 1))
+  ("c" mc/insert-letters)
+
+  ("q" nil))
+
+(defhydra hydra-entry (:color blue)
+  "
+Welcome to hydra!
+"
+  ("<f3>" hydra-zoom/body "zoom")
+  ("<f4>" hydra-multiple-cursors/body "multiple cursors"))
+(global-set-key (kbd "<f2>") 'hydra-entry/body)
+
 (provide 'init)
 ;;; init.el ends here
