@@ -32,6 +32,7 @@
 
 (cd "~/")
 
+(prefer-coding-system 'utf-8)
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (setq inhibit-startup-message t) ; no startup screen
 (setq make-backup-files nil)
