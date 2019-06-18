@@ -290,15 +290,6 @@
   (doom-themes-visual-bell-config)
   (load-theme 'doom-dracula t))
 
-;;; moe-theme
-(use-package moe-theme
-  :demand t
-  :config
-  :disabled t
-  (moe-dark)
-  ;;(moe-theme-set-color 'orange)
-  )
-
 ;;; golden-ratio.el
 ;;; https://github.com/roman/golden-ratio.el
 (use-package golden-ratio
